@@ -1,3 +1,5 @@
+project 설정 yarn init
+
 typescript 설치
 yarn global add typescript
 
