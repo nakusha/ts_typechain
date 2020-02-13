@@ -1,36 +1,33 @@
-/*
-//interface는 js로 컴파일되지않는다 js에서 확인하려면 class를 이용한다.
-interface Human {
-    name:string;
-    age:number;
-    gender:string;
+class Block { 
+    public index: number;
+    public hash: string;
+    public previousHash: string;
+    public data: string;
+    public timestamp: number;
+
+    constructor(index: number,
+        hash: string,
+        previousHash: string,
+        data: string,
+        timestamp: number
+        ){
+            this.index = index;
+            this.hash = hash;
+            this.previousHash = previousHash;
+            this.data = data;
+            this.timestamp = timestamp;
+        }
 }
 
-const person = {
-    name: "Yeons",
-    age: 36,
-    gender: "male"
-}
+const genesisBlock:Block = new Block(0, "123gvi2b1bd", "", "hello", 123456);
 
-*/
-class Human {
-    public name: string;
-    public age: number;
-    public gender: string;
-    constructor(name:string, age:number, gender:string){
-        this.name = name;
-        this.age = age;
-        this.gender = gender;
-    }
-}
+let blockchain:[Block] = [genesisBlock];
 
-const ys = new Human("Yeonsu",36,"male");
+// Block 배열에 string가 들어가려해서 ts에서 자동으로 애러처리함
+//blockchain.push("stuff");
 
-// return 은 :를이요하여 정한다.
-const sayHi = (person:Human):string => {
-    return `Hello ${person.name}, you are ${person.age}, gender is ${person.gender}`;
-};
+console.log(blockchain);
 
-console.log(sayHi(ys));
+
 
 export {};
