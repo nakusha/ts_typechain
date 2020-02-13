@@ -31,11 +31,20 @@ let blockchain:Block[] = [genesisBlock];
 // Block 배열에 string가 들어가려해서 ts에서 자동으로 애러처리함
 //blockchain.push("stuff");
 
-const getBlockchain = () : Block[] => blockchain;
+const getBlockchain = (): Block[] => blockchain;
 
 const getLatestBlock = (): Block => blockchain[blockchain.length - 1];
 
 const getNewTimeStamp = (): number => Math.round(new Date().getTime() / 1000);
 
+const createNewBlock = (data: string): Block => {
+    const previousBlock: Block = getLatestBlock();
+    const newIndex : number = previousBlock.index + 1;
+    const newTimeStamp: number = getNewTimeStamp();
+    const newHash: string = Block.calculateBlockHash(newIndex, previousBlock.hash, newTimeStamp, data);
+    const newBlock: Block = new Block(newIndex, newHash, previousBlock.hash, data, newTimeStamp)
+    return newBlock;
+};
 
+console.log(createNewBlock("hello"), createNewBlock("bye bye"))
 export {};
